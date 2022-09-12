@@ -1,2 +1,3 @@
-#Tradutor
-  Codigo que tradus em linguagem python
+# Tradutor
+ Tradutor de idioma
+ programa sera aprimorado, ate ficar pronto.
