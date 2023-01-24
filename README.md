@@ -13,3 +13,6 @@
 
 4. **Videos**;
 	* Programa de mexa com arquivo .mp4 criação do app principal.
+
+5. **Gera_QRcode**;
+	* Programa que ira receber um link e gera na mesma pasta uma imagem em QRCode.
