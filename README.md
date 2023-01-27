@@ -16,3 +16,6 @@
 
 5. **Gera_QRcode**;
 	* Programa que ira receber um link e gera na mesma pasta uma imagem em QRCode.
+
+6. **Inicializar Projetos Python**;
+	* Programa que ira criar automatico pasta + pastasrc e um arquivo python com descrição de comando para inicializar um projeto em python.
