@@ -1,7 +1,6 @@
 import os
 import time
 from tqdm import trange
-from tqdm import tqdm
 
 caminhoAtual = os.getcwd()
 venv = 'python -m venv venv'
