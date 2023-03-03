@@ -1,66 +1,69 @@
 from datetime import datetime
 from tqdm import tqdm
 from tqdm import trange
-import instaloader
 import time
-import getpass
+import os
+import instaloader
 
-# função de login
+def data_inicial():
+    dia = int(input("Digite o dia inicial: "))
+    mes = int(input("Digite o mes inicial: "))
+    ano = int(input("Digite o ano inicial: "))
 
-
-def loading_user():
-    user = input("Usuario: ")
-    senha = getpass.getpass("Senha: ", stream=None)
-    L.login(user, senha)
-    for _ in trange(100, desc="Loading..."):
-        time.sleep(0.25)
-    print("Loading Done!")
+    return datetime(ano, mes, dia)
 
 
-def timeInicial():
-    anoIni = int(input("Digite o ano inicial: "))
-    mesIni = int(input("Digite o mes inicial: "))
-    diaIni = int(input("Digite o dia inicial: "))
-    SINCE = datetime(anoIni, mesIni, diaIni)
-    return SINCE
+def data_final():
+    dia = int(input("Digite o dia final: "))
+    mes = int(input("Digite o mes final: "))
+    ano = int(input("Digite o ano final: "))    
+    
+    return datetime(ano, mes, dia)
+
+def post_conta(perfil, pasta):
+    opcao = input('Deseja baixar posts da conta? (S/N)')
+    if opcao == 's' or opcao == 'S':
+        # percorre os post e baixa apenas os que estão dentro do periodo desejado
+        profile = instaloader.Profile.from_username(L.context, perfil).get_posts()
+        
+        SINCE = data_inicial()
+        UNTIL = data_final()
+        os.system('cls')
+        for post in profile:
+            
+            if (post.date >= SINCE) and (post.date <= UNTIL):
+                print(post.date)
+                L.download_post(post, pasta)
+            for _ in trange(10, desc="..."):
+                time.sleep(1)
 
 
-def timeFinal():
-    anoFim = int(input("Digite o ano final: "))
-    mesFim = int(input("Digite o mes final: "))
-    diaFim = int(input("Digite o dia final: "))
-    UNTIL = datetime(anoFim, mesFim, diaFim)
-    return UNTIL
-
+def storys(perfil, pasta):
+    opcao = input('Deseja baixar storys da conta? (S/N)')
+    if opcao == 's' or opcao == 'S':
+        # Percorra as histórias e baixe cada uma
+        profile = instaloader.Profile.from_username(
+            L.context, perfil).has_viewable_story()
+        os.system('cls')
+        for story in tqdm(profile, desc="baixando..."):
+            L.download_story(story, pasta)
 
 # carrega a lib e faz login com a conta desejada
 L = instaloader.Instaloader(
-    download_pictures=True,
-    download_videos=True,
-    download_video_thumbnails=True,
+    download_video_thumbnails=False,
     download_geotags=False,
     download_comments=False,
     save_metadata=False,
     compress_json=False,
     filename_pattern='{profile}_{mediaid}'
 )
-print("Download de Post do instagram*DESATIVAR A VERIFICAÇÃO EM DUAS ETAPAS*")
-loading_user()
 
-
-# carrega todos os post do perfil escolhido
+# contas privadas precisa esta logado, essa função esta em construção e atualização.
+print("Download de Post do instagram de contas publicas")
 perfil = input("Perfil: ")
-posts = instaloader.Profile.from_username(
-    L.context, perfil).get_posts()
 
+pasta = "insta-"+perfil
 
-inicial = timeInicial()
-final = timeFinal()
-
-# percorre os post e baixa apenas os que estão dentro do periodo desejado
-pasta = "instadowload("+perfil+")"
-for post in tqdm(posts, desc="baixando..."):
-    time.sleep(0.5)
-    if (post.date >= inicial) and (post.date <= final):
-        print(post.date)
-        L.download_post(post, pasta)
+post_conta(perfil, pasta)
+#Precisa esta logado
+#storys(perfil, pasta)
