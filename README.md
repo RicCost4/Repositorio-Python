@@ -18,4 +18,7 @@
 	* Programa que ira receber um link e gera na mesma pasta uma imagem em QRCode.
 
 6. **Inicializar Projetos Python**;
-	* Programa que ira criar automatico pasta + pastasrc e um arquivo python com descrição de comando para inicializar um projeto em python.
+	* Programa que ira criar automatico pasta + pasta src e um arquivo python com descrição de comando para inicializar um projeto em python ou em Nextjs.
+
+7. **Organizador de img**;
+	* Programa que ira lér e organizar as fotos em formatos PNG, JPG ou JPEG e organizar em pastas por ano e mes - projeto que criei para a minha noiva que guarda as fotos.
