@@ -1,0 +1,29 @@
+{
+    "lista":[
+        {
+            "projeto": "Estudos Remotos Sincronizados",
+            "url_path": "C:\\Users\\RICHARD\\Documents\\GitHub\\Estudos-Remotos-Sincro",
+            "comando": ["git pull", "git add .", "git commit -m", "git push"]
+        },
+        {
+            "projeto": "Portifolio v2.0",
+            "url_path": "C:\\Users\\RICHARD\\Documents\\GitHub\\portfolio2.0",
+            "comando": ["git pull", "git add .", "git commit -m", "git push"]
+        },
+        {
+            "projeto": "Projetos",
+            "url_path": "C:\\Users\\RICHARD\\Documents\\GitHub\\Projeto",
+            "comando": ["git pull", "git add .", "git commit -m", "git push"]
+        },
+        {
+            "projeto": "Repositorio HTML",
+            "url_path": "C:\\Users\\RICHARD\\Documents\\GitHub\\Repositorio-HTML",
+            "comando": ["git pull", "git add .", "git commit -m", "git push"]
+        },
+        {
+            "projeto": "Repositorio Python",
+            "url_path": "C:\\Users\\RICHARD\\Documents\\GitHub\\Repositorio-Python",
+            "comando": ["git pull", "git add .", "git commit -m", "git push"]
+        }
+    ]
+}
