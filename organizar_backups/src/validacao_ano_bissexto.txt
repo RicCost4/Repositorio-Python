@@ -1,0 +1,27 @@
+# https://www.onlinegdb.com/online_python_compiler
+import calendar
+import datetime
+
+data = "2022-02-26"
+data_backup = datetime.datetime.strptime(data, "%Y-%m-%d")
+
+if data_backup.day == calendar.monthrange(data_backup.year, data_backup.month)[1]:
+	print('ultimo dia do mes')
+else:
+	print('não é o ultimo dia do mes')
+
+data = "2024-02-28"
+data_backup = datetime.datetime.strptime(data, "%Y-%m-%d")
+
+if data_backup.day == calendar.monthrange(data_backup.year, data_backup.month)[1]:
+	print('ultimo dia do mes')
+else:
+	print('não é o ultimo dia do mes')
+
+data = "2023-02-28"
+data_backup = datetime.datetime.strptime(data, "%Y-%m-%d")
+
+if data_backup.day == calendar.monthrange(data_backup.year, data_backup.month)[1]:
+	print('ultimo dia do mes')
+else:
+	print('não é o ultimo dia do mes')

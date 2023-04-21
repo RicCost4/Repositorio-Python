@@ -1,0 +1,43 @@
+# https://www.onlinegdb.com/online_python_compiler
+import calendar
+import datetime
+import re
+
+regex_data = r"\d{4}-\d{2}-\d{2}"
+
+lista = ['backup_tabela1_2023-04-21', 'backup_tabela1_2023-03-20', 'backup_tabela1_2023-02-19', 'backup_tabela1_2023-01-18', 'backup_tabela1_2023-01-17', 'backup_tabela1_2023-02-16', 'backup_tabela1_2023-03-15', 'backup_tabela1_2023-04-14', 'backup_tabela1_2023-04-13', 'backup_tabela1_2023-04-12','backup_tabela1_2022-05-18', 'backup_tabela1_2022-11-14', 'backup_tabela1_2022-06-18', 'backup_tabela1_2022-09-03', 'backup_tabela1_2022-08-20', 'backup_tabela1_2023-01-17', 'backup_tabela1_2022-05-20', 'backup_tabela1_2022-10-02', 'backup_tabela1_2022-07-15', 'backup_tabela1_2022-06-19', 'backup_tabela1_2023-03-31', 'backup_tabela1_2023-03-24', 'backup_tabela1_2023-03-17', 'backup_tabela1_2023-03-10', 'backup_tabela1_2023-03-03', 'backup_tabela1_2023-02-24', 'backup_tabela1_2023-02-17', 'backup_tabela1_2023-02-10', 'backup_tabela1_2023-02-03', 'backup_tabela1_2023-04-12','backup_tabela1_2023-02-28', 'backup_tabela1_2023-01-31', 'backup_tabela1_2023-01-13', 'backup_tabela1_2023-01-27', 'backup_tabela1_2023-01-20', 'backup_tabela1_2023-01-03', 'backup_tabela1_2022-12-31', 'backup_tabela1_2022-10-31', 'backup_tabela1_2022-11-30', 'backup_tabela1_2022-09-30']
+
+cont = 0
+for arquivo in lista:
+    comparar = re.search(regex_data, arquivo)
+    condicao = False
+    
+    if not comparar:
+        continue
+    else:
+        data_backup = datetime.datetime.strptime(comparar.group(), "%Y-%m-%d")
+        data_atual = datetime.datetime.now()
+        diferenca_data = (data_atual - data_backup).days
+        if data_backup.month == data_atual.month:
+            print(arquivo, "- backup diario", cont)
+            condicao = True
+        else:
+            if data_backup.month != data_atual.month and diferenca_data <= 90:
+                if data_backup.weekday() == 4:
+                    print(arquivo, "- backup semanal.", cont)
+                    condicao = True
+
+                if data_backup.day ==  calendar.monthrange(data_backup.year, data_backup.month)[1]:
+                    print(arquivo, "- backup mensal entre os 90 dias.", cont)
+                    condicao = True
+
+            else:
+                if data_backup.day == calendar.monthrange(data_backup.year, data_backup.month)[1]:
+                    print(arquivo, "- backup mensal", cont)
+                    condicao = True
+                
+        
+        
+        if not condicao:
+            print(arquivo, "- excluido arquivo", cont)
+    cont += 1

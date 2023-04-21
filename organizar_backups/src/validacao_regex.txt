@@ -1,0 +1,19 @@
+# https://www.onlinegdb.com/online_python_compiler
+import datetime
+import re
+
+regex_data = r"\d{4}-\d{2}-\d{2}"
+
+arquivo = "backup_tabela1_2023-03-11"
+
+comparar = re.search(regex_data, arquivo)
+
+if not comparar:
+    print("não contem")
+else:
+    data_backup = datetime.datetime.strptime(comparar.group(), "%Y-%m-%d")
+    print(data_backup, arquivo)
+    # print(data_backup.days, arquivo)
+    # print(data_backup.month, arquivo)
+    # print(data_backup.year, arquivo)
+    # print(data_backup.date(), arquivo)
